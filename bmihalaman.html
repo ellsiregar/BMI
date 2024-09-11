@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghitungan Berat Ideal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff; /* Light blue background */
+        }
+        
+        .top-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .top-left a {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #007bff; /* Blue background */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .top-left a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            margin-top: 80px;
+        }
+        
+        .logo img {
+            border-radius: 50%; /* Circular logo */
+            border: 3px solid #007bff; /* Blue border for logo */
+        }
+        
+        .gender {
+            display: flex; 
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .gender-icon {
+            margin: 20px;
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column; /* Added margin-bottom to create space below gender icons */
+        }
+        
+        .gender-icon img {
+            border-radius: 50%;
+            border: 2px solid #007bff;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        
+        .result img {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+        }
+        
+        input[type="number"] {
+            padding: 12px;
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 8px;
+            width: 220px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background-color: #007bff; /* Blue background */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        
+        /* Tombol Profil di Kiri Atas */
+        .profil {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .profil:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profil">
+        <button class="back-button" onclick="window.location.href='nama.html'">Profil</button>
+    </div>
+    
+
+    <div class="logo">
+        <img src="logoapk.png" alt="Logo" width="120" height="120">
+    </div>
+
+    <div>
+        <h3>Pilih Jenis Kelamin:</h3>
+        <div class="gender">
+            <div>
+                <label class="gender-icon">
+                    <img src="logo4.png" alt="Logo" width="80" height="80"> <br>
+                    <input type="radio" name="gender" value="male"> Laki-Laki
+                </label>
+            </div>
+            <div>
+                <label class="gender-icon">
+                    <img src="logo3.png" alt="logo" width="80" height="80"> <br>
+                    <input type="radio" name="gender" value="female"> Perempuan
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Hitung Berat Badan Ideal</h3>
+        <label>
+            Tinggi Badan (cm): 
+            <input type="number" id="height" placeholder="Tinggi dalam cm">
+        </label><br><br>
+        <label>
+            Berat Badan (kg): 
+            <input type="number" id="weight" placeholder="Berat dalam kg">
+        </label><br><br>
+        <button onclick="calculateBMI()">Hitung</button>
+
+    </div>
+
+    <div class="result">
+        <h3>Hasil:</h3>
+        <p id="bmi-result"></p>
+        <p id="bmi-category"></p>
+        <img id="bmi-image" src="" alt="BMI Image">
+    </div>
+   
+
+    <script>
+        function calculateBMI() {
+            var height = document.getElementById("height").value;
+            var weight = document.getElementById("weight").value;
+            var image = document.getElementById("bmi-image");
+            var gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+            if(height && weight && gender) {
+                var heightInMeters = height / 100;
+                var bmi = weight / (heightInMeters * heightInMeters);
+                document.getElementById("bmi-result").innerHTML = "BMI: " + bmi.toFixed(2);
+
+                // Menentukan gambar berdasarkan gender dan kategori BMI
+                if (bmi < 18.5) {
+                    document.getElementById("bmi-category").innerHTML = "Keterangan: Kekurangan Berat Badan";
+                    image.src = gender === "male" ? "Cowok_kurus.png" : "Cewek_kurus.png";
+                    image.alt = gender === "male" ? "Laki-laki kurus" : "Perempuan kurus";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    document.getElementById("bmi-category").innerHTML = "Keterangan: Berat Badan Ideal";
+                    image.src = gender === "male" ? "Kucing_ideal.png" : "Kucing_ideal.png";
+                    image.alt = gender === "male" ? "Kucing_ideal.png" : "Kucing_ideal.png";
+                } else {
+                    document.getElementById("bmi-category").innerHTML = "Keterangan: Obesitas";
+                    image.src = gender === "male" ? "Cowok_gemuk.png" : "Cewek_gemuk.png";
+                    image.alt = gender === "male" ? "Laki-laki obesitas" : "Perempuan obesitas";
+                }
+            } else {
+                alert("Silakan masukkan tinggi, berat badan, dan pilih jenis kelamin.");
+            }
+        }
+    </script>
+</body>
+</html>

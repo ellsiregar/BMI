@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 22px); /* Adjust width to fit padding and border */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: calc(100% - 22px); /* Adjust width to fit padding and border */
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form id="registerForm" onsubmit="return handleRegister(event)">
+        <input type="email" id="registerEmail" name="email" placeholder="Masukkan email" required>
+        <input type="password" id="registerPassword" name="password" placeholder="Masukkan password" required>
+        <button type="submit">login</button>
+    </form>
+</div>
+
+<script>
+    function handleRegister(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        // Simulate registration logic here
+
+        // Set registration status in local storage
+        localStorage.setItem('isRegistered', 'true');
+
+        // Redirect to login page after registration
+        window.location.href = 'fitur.html';
+    }
+</script>
+
+</body>
+</html>

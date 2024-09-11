@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .register-btn {
+            background-color: #007bff;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message,
+        .register-reminder {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <div class="register-reminder">Silahkan register dulu sebelum login</div>
+    <div id="errorMessage" class="error-message"></div>
+    <form id="loginForm" onsubmit="return validateLogin(event)">
+        <input type="email" id="email" name="email" placeholder="Masukkan email" required disabled>
+        <input type="password" id="password" name="password" placeholder="Masukkan password" required disabled>
+        <button type="submit">Login</button>
+    </form>
+    <button class="register-btn" onclick="window.location.href='register.html'">Register</button>
+</div>
+
+<script>
+    // Simulasi pengecekan apakah pengguna sudah register
+    // Anda bisa mengganti ini dengan pengecekan terhadap database atau storage
+    var isRegistered = false; // Ubah menjadi true jika pengguna sudah register
+
+    function validateLogin(event) {
+        event.preventDefault(); // Mencegah form dari pengiriman default
+        var errorMessage = document.getElementById("errorMessage");
+
+        // Reset pesan kesalahan
+        errorMessage.textContent = "";
+
+        if (!isRegistered) {
+            errorMessage.textContent = "Anda harus register terlebih dahulu.";
+            return false;
+        }
+
+        // Lakukan proses login di sini
+        // Contoh: validasi email dan password dari database
+
+        alert("Login berhasil!");
+        return true;
+    }
+
+    // Fungsi untuk mengatur form login berdasarkan status pendaftaran
+    function checkRegistrationStatus() {
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+
+        if (isRegistered) {
+            emailInput.disabled = false;
+            passwordInput.disabled = false;
+        } else {
+            emailInput.disabled = true;
+            passwordInput.disabled = true;
+        }
+    }
+
+    // Panggil fungsi untuk cek status registrasi saat halaman dimuat
+    checkRegistrationStatus();
+</script>
+
+</body>
+</html>

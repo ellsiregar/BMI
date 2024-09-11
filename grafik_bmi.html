@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafik Hasil BMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #2db2db;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .header h1 {
+            color: white;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            margin-top: 80px; /* Margin untuk menghindari overlap dengan header */
+            max-width: 1200px;
+            margin: 80px auto 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Styling untuk tombol kembali */
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <!-- Tambahkan library Chart.js untuk grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <img src="logoapk.png" alt="Logo"> <!-- Gantilah dengan logo Anda -->
+    <h1>Grafik Hasil BMI</h1>
+</div>
+
+<div class="container">
+    <div class="chart-container">
+        <canvas id="bmiChart"></canvas>
+    </div>
+</div>
+
+<!-- Tombol kembali -->
+<button class="back-button" onclick="window.location.href='fitur.html'">Kembali</button>
+
+<script>
+    // Contoh data BMI (Anda dapat menggantinya dengan data aktual)
+    const bmiData = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+            label: 'BMI',
+            data: [22.1, 21.8, 22.0, 22.2, 22.5, 22.3, 22.7],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Konfigurasi grafik
+    const config = {
+        type: 'line', // Menggunakan grafik garis
+        data: bmiData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Render grafik
+    const bmiChart = new Chart(
+        document.getElementById('bmiChart'),
+        config
+    );
+</script>
+
+</body>
+</html>

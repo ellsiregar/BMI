@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <form id="registerForm" onsubmit="return validateRegister(event)">
+        <label for="fullName">Nama Lengkap:</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap" required>
+
+        <label for="gender">Jenis Kelamin:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Pilih jenis kelamin</option>
+            <option value="male">Laki-laki</option>
+            <option value="female">Perempuan</option>
+            <option value="other">Lainnya</option>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+
+        <label for="confirmPassword">Konfirmasi Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Masukkan ulang password" required>
+
+        <center><button type="submit">Register</button></center>
+    </form>
+    <div id="errorMessage" class="error-message"></div>
+</div>
+
+<script>
+    function validateRegister(event) {
+        event.preventDefault(); // Mencegah pengiriman form default
+
+        var fullName = document.getElementById("fullName").value;
+        var gender = document.getElementById("gender").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var errorMessage = document.getElementById("errorMessage");
+
+        // Reset pesan kesalahan
+        errorMessage.textContent = "";
+
+        // Validasi semua bidang wajib diisi
+        if (!fullName || !gender || !email || !password || !confirmPassword) {
+            errorMessage.textContent = "Semua bidang wajib diisi.";
+            return false;
+        }
+
+        // Validasi kecocokan password
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "Password dan konfirmasi password tidak cocok.";
+            return false;
+        }
+
+        // Validasi panjang password minimal 6 karakter
+        if (password.length < 6) {
+            errorMessage.textContent = "Password harus terdiri dari minimal 6 karakter.";
+            return false;
+        }
+
+        // Validasi email (opsional tambahan validasi email yang lebih kuat)
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            errorMessage.textContent = "Format email tidak valid.";
+            return false;
+        }
+
+        // Jika semua validasi berhasil
+        alert("Registrasi berhasil!");
+
+        // Redirect ke halaman login setelah registrasi berhasil
+        window.location.href = "loginhalaman2.html"; // Ganti "login.html" dengan URL halaman login Anda
+        return true;
+    }
+</script>
+
+</body>
+</html>

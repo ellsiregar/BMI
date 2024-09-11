@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur Utama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+            background-color:#2db2db;
+            position: relative;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid rgb(255, 255, 255);
+            background-color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature {
+            margin-bottom: 40px;
+        }
+
+        .feature h2 {
+            margin-top: 0;
+            color: #2db2db;
+        }
+
+        .feature p {
+            line-height: 1.6;
+        }
+
+        .feature img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #2db2db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2db2db;
+        }
+        .fitur {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logoapk.png" alt="Logo"> <!-- Gantilah dengan logo Anda -->
+</div>
+
+<div class="container">
+    <div class="feature">
+        <h2>1. Grafik Hasil BMI</h2>
+        <p>Visualisasikan hasil Body Mass Index (BMI) Anda dengan grafik interaktif untuk melacak perkembangan kesehatan Anda.</p>
+        <a href="grafik_bmi.html" class="btn">Lihat Grafik</a>
+    </div>
+
+    <div class="feature">
+        <h2>2. Artikel Kesehatan</h2>
+        <p>Baca artikel-artikel terbaru tentang kesehatan dan kebugaran untuk menjaga gaya hidup sehat.</p>
+        <a href="artikel_kesehatan.html" class="btn">Baca Artikel</a>
+    </div>
+
+    <div class="feature">
+        <h2>3. Pelacak Nutrisi</h2>
+        <p>Catat asupan nutrisi harian Anda dan pastikan Anda mendapatkan nutrisi yang cukup setiap hari.</p>
+        <a href="pelacak_nutrisi.html" class="btn">Lacak Nutrisi</a>
+    </div>
+
+    <div class="feature">
+        <h2>4. Simpan Hasil BMI</h2>
+        <p>Simpan hasil pengukuran BMI Anda untuk referensi di masa mendatang dan pantau kemajuan Anda.</p>
+        <a href="simpan_hasil_bmi.html" class="btn">Simpan Hasil</a>
+    </div>
+</div>
+<div class="fitur">
+    <button class="back-button" onclick="window.location.href='bmihalaman.html'">Kembali</button>
+</div>
+
+
+</body>
+</html>
